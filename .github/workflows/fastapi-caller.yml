@@ -1,0 +1,17 @@
+name: Call FastAPI Every 5 Minutes
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # This means every 5 minutes
+  workflow_dispatch:       # Optional: lets you run it manually too
+
+jobs:
+  call-fastapi:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Make POST request to FastAPI
+        run: |
+          curl -X POST https://fastapi-embedder.onrender.com/embed \
+          -H "Content-Type: application/json" \
+          -d '{"input": "Scheduled call from GitHub Actions"}'
